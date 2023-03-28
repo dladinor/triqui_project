@@ -1,0 +1,22 @@
+
+#tablero{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border: 5px solid black;
+    width: 900px;        height: 900px;
+}
+.cuadrado{        
+    border: 5px solid blue;
+    width: 200px;
+    margin: 40px;
+    height: 200px;
+    cursor: pointer;
+}
+#reinicio-btn{
+    background-color: rgb(124,150,184);
+    margin-top: 10px;
+    color: aliceblue;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 10px 20px;    
+}
