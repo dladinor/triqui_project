@@ -13,7 +13,12 @@ const cuadrado = document.querySelectorAll(".cuadrado")
           });
 const botonReseteo = document.querySelector('#reinicio-btn')
 botonReseteo.addEventListener('click', () => {
-     reseteoJuego();
+     reseteoJuegoCompl();
+});
+
+const botonJugador = document.querySelector('#jugador-btn')
+botonJugador.addEventListener('click', () =>{
+
 });
 
 function valideGanador(){
@@ -39,11 +44,22 @@ function valideGanador(){
                cuadradoC.textContent === jugadorActual
                ){
                  const etiquetaGanador = document.querySelector("#etiqueta-ganador");
+                 const etiquetaJugadorx = document.querySelector("#etiqueta-suma-x");
+                 const etiquetaJugadoro = document.querySelector("#etiqueta-suma-o");
+                 let sumax = 0;
+                 let sumao = 0;
                  etiquetaGanador.textContent = `El ganador fue ${jugadorActual}! Felicitaciones`;
                  setTimeout(() => {
                     reseteoJuego();
                  }, 3000
                  );
+               if (jugadorActual === 'X'){
+                    sumax+=1000;
+                    etiquetaJugadorx.textContent = `Puntaje jugador X = ${sumax}`
+               } else {
+                    sumao+=1000;
+                    etiquetaJugadoro.textContent = `Puntaje jugador O = ${sumao}`
+               }
                return; 
                }
      }
@@ -57,4 +73,17 @@ function reseteoJuego(){
       jugadorActual = 'X';
       const etiquetaGanador = document.querySelector("#etiqueta-ganador");
       etiquetaGanador.textContent = "No ha ganado nadie hasta el momento";
+}
+function reseteoJuegoCompl(){
+     cuadrado.forEach(cuadrado =>{
+          cuadrado.textContent = '';
+          cuadrado.removeAttribute('jugador-data');
+      });
+      jugadorActual = 'X';
+      const etiquetaGanador = document.querySelector("#etiqueta-ganador");
+      const etiquetaJugadoro = document.querySelector('#etiqueta-suma-x');
+      const etiquetaJugadorx = document.querySelector('#etiqueta-suma-o');
+      etiquetaGanador.textContent = "No ha ganado nadie hasta el momento";
+      etiquetaJugadoro.textContent = "Puntaje jugador X = 0";
+      etiquetaJugadorx.textContent = "Puntaje jugador O = 0"
 }
