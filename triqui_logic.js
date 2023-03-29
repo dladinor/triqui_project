@@ -13,11 +13,7 @@ const cuadrado = document.querySelectorAll(".cuadrado")
           });
 const botonReseteo = document.querySelector('#reinicio-btn')
 botonReseteo.addEventListener('click', () => {
-        cuadrado.forEach(cuadrado =>{
-            cuadrado.textContent = '';
-            cuadrado.removeAttribute('jugador-data');
-        });
-        jugadorActual = 'X';
+     reseteoJuego();
 });
 
 function valideGanador(){
@@ -28,8 +24,8 @@ function valideGanador(){
           [1,4,7],
           [2,5,8],
           [0,4,8],
-          [2,4,6]
-
+          [2,4,6],
+          [0,3,6]
      ];
      for (let i = 0; i<combinacionGanadores.length; i++){
           const [a, b, c] = combinacionGanadores[i]
@@ -37,13 +33,28 @@ function valideGanador(){
           const cuadradoB = cuadrado[b];
           const cuadradoC = cuadrado[c];
 
-          if (cuadradoA.textContent === jugadorActual &&
+          if (
+               cuadradoA.textContent === jugadorActual &&
                cuadradoB.textContent === jugadorActual &&
-               cuadradoC.textContent === jugadorActual)
-               {
-                 const etiquetaGanador = document.querySelector("#etiqueta-gandor");
+               cuadradoC.textContent === jugadorActual
+               ){
+                 const etiquetaGanador = document.querySelector("#etiqueta-ganador");
                  etiquetaGanador.textContent = `El ganador fue ${jugadorActual}! Felicitaciones`;
-                 return; 
+                 setTimeout(() => {
+                    reseteoJuego();
+                 }, 3000
+                 );
+               return; 
                }
      }
+}
+
+function reseteoJuego(){
+     cuadrado.forEach(cuadrado =>{
+          cuadrado.textContent = '';
+          cuadrado.removeAttribute('jugador-data');
+      });
+      jugadorActual = 'X';
+      const etiquetaGanador = document.querySelector("#etiqueta-ganador");
+      etiquetaGanador.textContent = "No ha ganado nadie hasta el momento";
 }
